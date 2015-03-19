@@ -5,6 +5,7 @@
     <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.2/angular-material.min.js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/mainController.js"></script>
     <script src="./js/facebookService.js"></script>
@@ -13,23 +14,24 @@
 <body ng-controller="mainController">
 ---------testing grounds------------
 <p>{{test}}</p>
-<input type="text" placeholder="add skill" ng-model="skillToAdd" required/>
-<input type="text" placeholder="category" ng-model="category"/>
-<button ng-click="addSkill(skillToAdd, category)">Add Skill</button>
-<br/>
-<p>{{data.users[(currentUserId)].name}} skills:{{data.users[(currentUserId)].skills}}</p>
-<br/>
-<h1>Friends!</h1>
-<p>{{}}</p>
+<img src="{{data.users[(currentUserId)].picUrl}}" alt=""/>
 
-<br/>
-<p>TEST CONSOLE : {{friends}}</p>
-<br/>
-<button ng-click="getFriends()">get Friends list</button>
-<<h1>created users:</h1><img src="{{data.users[(currentUserId)].picUrl}}" alt=""/>
+<button ng-click="fbLogin()">Facebook!</button><br/>
+<button ng-click="getFriends()">get Friends list</button><br/>
+<input type="text" placeholder="add skill" ng-model="skillToAdd"/>
+<button ng-click="addSkill(skillToAdd)">Add Skill</button><br/>
+<p>{{data.users[(currentUserId)].name}} skills:{{data.users[(currentUserId)].skills}}</p><br/>
+
 
 ---------testing grounds------------
-<ng-view></ng-view>
+<h1>Friends!</h1>
+<ul>
+        <li ng-repeat="user in data.users">
+        <p>{{user.name}}</p>
+        </li>
+</ul>
+
+
 
 
 </body>

@@ -3,14 +3,14 @@
  */
 var app = angular.module('myConnects', ["firebase", "ngRoute"]);
 
-app.config(function($routeProvider){
+//app.config(function($routeProvider){
+//
+//    $routeProvider
+//        .when('/', {
+//            templateUrl: "/"
+//        })
+//        .otherwise( {
+//            redirectTo: '/'
+//        })
 
-    $routeProvider
-        .when('/login', {
-            templateUrl: "./login/loginView.html"
-        })
-        .otherwise( {
-            redirectTo: '/login'
-        })
-
-});
+//});

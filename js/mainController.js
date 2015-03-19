@@ -10,7 +10,7 @@ app.controller('mainController', function($scope, $firebaseObject,facebookServic
 
     //---------for security----------paste your own firebase link here
 
-    var ref = new Firebase("");
+    var ref = new Firebase("https://myconnects.firebaseio.com/appData");
 
 
 
@@ -53,38 +53,48 @@ app.controller('mainController', function($scope, $firebaseObject,facebookServic
         facebookService.getFriendsData($scope.currentUserToken).then(function(response){
 
             //------------LOOP THROUGH FRIENDS AND OBTAIN JUST IDS--------
-            var allFriendsObj = {};
+            var allFriends = [];
             var friendsData = response.data;
             console.log(response.data);
                 for (var i = 0; i < friendsData.length; i++) {
-                    allFriendsObj[friendsData[i].id] = (friendsData[i].name);
+                    allFriends.push(friendsData[i].id);
                 }
-                var friendsRef = new Firebase("https://myconnects.firebaseio.com/appData/users" + "/" + ($scope.currentUserId) + "/" + "friends");
-                friendsRef.update(allFriendsObj);
-                $scope.currentUserFriends = allFriendsObj;
-                console.log($scope.currentUserFriends);
+
+                //--------CODE IF I WANT TO ADD TO FIREBASE---------
+//                var friendsRef = new Firebase("https://myconnects.firebaseio.com/appData/users" + "/" + ($scope.currentUserId) + "/" + "friends");
+//                friendsRef.update(allFriends);
+                // put allFriends Array into scope
+                $scope.allFriends = allFriends;
+                console.log($scope.allFriends);
+
+
         });
     };
 
 //---------------------------------------------------ADD SKILL TO CURRENT USER SKILLS----------------------------------------------------------------
           //---------------CODE TO ADD SKILLS AS AN OBJECT KEY AND CATEGORY AS VALUE----------------------
-          $scope.addSkill = function(skill, category){
-          var currentUserSkills = {};
-          currentUserSkills[(skill)] = category;
+//          $scope.addSkill = function(skill, category){
+//          var currentUserSkills = {};
+//          currentUserSkills[(skill)] = category;
 
-        //--------------------------ADD/UPDATE NEW LOCATION FOR SKILLS------------------
-        var newSkillRef = new Firebase("https://myconnects.firebaseio.com/appData/users" + "/" + ($scope.currentUserId) + "/" + "skills");
-        newSkillRef.update(currentUserSkills)
-        console.log("added skill:" + currentUserSkills);
+//        //--------------------------ADD/UPDATE NEW LOCATION FOR SKILLS------------------
+//        var newSkillRef = new Firebase("https://myconnects.firebaseio.com/appData/users" + "/" + ($scope.currentUserId) + "/" + "skills");
+//        newSkillRef.update(currentUserSkills)
+//        console.log("added skill:" + currentUserSkills);
 
 
               //---------------CODE TO ADD SKILLS AS AN ARRAY---------------------------------------------
-//        $scope.addSkill = function(skill){
-//        //---convert from $scope so that we can use .push() the new skill--------------
-//        var currentUserSkills = $scope.data.users[($scope.currentUserId)].skills || [];  //----[] is needed to create empty array if no skills yet
-//        //-----add skill to current Skills--------
-//        currentUserSkills.push(skill);
+        $scope.addSkill = function(skill){
+        //---convert from $scope so that we can use .push() the new skill--------------
+        var currentUserSkills = $scope.data.users[($scope.currentUserId)].skills || [];  //----[] is needed to create empty array if no skills yet
+        //-----add skill to current Skills--------
+        currentUserSkills.push(skill);
               //-----add skill to current Skills--------
+
+            //--------------------------ADD/UPDATE NEW LOCATION FOR SKILLS------------------
+            var newSkillRef = new Firebase(ref + "/users" + "/" + ($scope.currentUserId) + "/" + "skills");
+            newSkillRef.update(currentUserSkills)
+            console.log("added skill:" + currentUserSkills);
 
 
 
