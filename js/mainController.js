@@ -3,14 +3,14 @@
  */
 var app = angular.module('myConnects');
 
-app.controller('mainController', function($scope, $firebaseObject,facebookService) {
+app.controller('mainController', function($scope,$rootScope, $firebaseObject,facebookService) {
     $scope.test = "test passed";
 
 //-----------------------------------------------------------REFs----------------------------------------------
 
     var ref = new Firebase("https://myconnects.firebaseio.com/appData");
 //-----------------------------------------------------3-WAY-DATA BINDING------------------------------------------------------------------------------
-    $scope.data = $firebaseObject(ref);
+    $rootScope.data = $firebaseObject(ref);
 //-------------------------------------------------------GET FRIENDS------------------------------------------------------------
 
     $scope.getFriends = function(){
@@ -97,42 +97,42 @@ app.controller('mainController', function($scope, $firebaseObject,facebookServic
 //    };
 //-------------------------------------------------FB LOGIN AND CREATE/UPDATE USER-------------------------------------------------------------------
 
-        $scope.fbLogin = function() {
-            ref.authWithOAuthPopup("facebook", function(error, authData) {
-                    //--------------LOG---------------
-                    if (error) {
-                        console.log("Login Failed!", error);
-                    } else {
-                        console.log("Authenticated successfully with payload:", authData);
+    $scope.fbLogin = function() {
+        ref.authWithOAuthPopup("facebook", function(error, authData) {
+                //--------------LOG---------------
+                if (error) {
+                    console.log("Login Failed!", error);
+                } else {
+                    console.log("Authenticated successfully with payload:", authData);
 
-                        //----------------user id and token to be used in scope------------------
-                        $scope.currentUserId = authData.facebook.id;
-                        $scope.currentUserToken = authData.facebook.accessToken;
-
-
-
-                        var currentUser = {
-                            name: authData.facebook.displayName,
-                            picUrl: authData.facebook.cachedUserProfile.picture.data.url,
-                            email: authData.facebook.email || "none",
-                            link: authData.facebook.cachedUserProfile.link,
-                            lastLogin: new Date()
-                        };
-
-                        //-------NEW REF FOR USERS----------PUT IN SCOPE SO THAT THE ADD SKILL CAN ADD FOLDER TO newUserRef-------
-                        $scope.usersRef = ref.child("users");
-                        $scope.newUserRef = new Firebase($scope.usersRef + "/" + $scope.currentUserId);
-                        $scope.newUserRef.update(currentUser);
-                        $scope.getFriends();
+                    //----------------user id and token to be used in scope------------------
+                    $rootScope.currentUserId = authData.facebook.id;
+                    $scope.currentUserToken = authData.facebook.accessToken;
 
 
-                    }
-                }, {
-                    remember: "default",
-                    scope: "email,user_friends"
+
+                    var currentUser = {
+                        name: authData.facebook.displayName,
+                        picUrl: authData.facebook.cachedUserProfile.picture.data.url,
+                        email: authData.facebook.email || "none",
+                        link: authData.facebook.cachedUserProfile.link,
+                        lastLogin: new Date()
+                    };
+
+                    //-------NEW REF FOR USERS----------PUT IN SCOPE SO THAT THE ADD SKILL CAN ADD FOLDER TO newUserRef-------
+                    $scope.usersRef = ref.child("users");
+                    $scope.newUserRef = new Firebase($scope.usersRef + "/" + $scope.currentUserId);
+                    $scope.newUserRef.update(currentUser);
+                    $scope.getFriends();
+
+
                 }
-            );
-        };
+            }, {
+                remember: "default",
+                scope: "email,user_friends"
+            }
+        );
+    };
 
 
 
@@ -148,22 +148,22 @@ app.controller('mainController', function($scope, $firebaseObject,facebookServic
 //        console.log("added skill:" + currentUserSkills);
 
 
-              //---------------CODE TO ADD SKILLS AS AN ARRAY---------------------------------------------
-        $scope.addSkill = function(skill){
+    //---------------CODE TO ADD SKILLS AS AN ARRAY---------------------------------------------
+    $rootScope.addSkill = function(skill){
         //---convert from $scope so that we can use .push() the new skill--------------
         var currentUserSkills = $scope.data.users[($scope.currentUserId)].skills || [];  //----[] is needed to create empty array if no skills yet
         //-----add skill to current Skills--------
         currentUserSkills.push(skill);
-              //-----add skill to current Skills--------
+        //-----add skill to current Skills--------
 
-            //--------------------------ADD/UPDATE NEW LOCATION FOR SKILLS------------------
-            var newSkillRef = new Firebase(ref + "/users" + "/" + ($scope.currentUserId) + "/" + "skills");
-            newSkillRef.update(currentUserSkills);
-            console.log("added skill:" + currentUserSkills);
+        //--------------------------ADD/UPDATE NEW LOCATION FOR SKILLS------------------
+        var newSkillRef = new Firebase(ref + "/users" + "/" + ($scope.currentUserId) + "/" + "skills");
+        newSkillRef.update(currentUserSkills);
+        console.log("added skill:" + currentUserSkills);
 
 
 
-          };
+    };
 
 //----------------------------AUTO RUN-------------------------
 //    $scope.onAuth();

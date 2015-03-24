@@ -2,7 +2,7 @@
 <md-dialog aria-label="Mango (Fruit)">
     <md-content class="sticky-container">
         <md-subheader class="md-sticky-no-effect"></md-subheader>
-                <div ng-controller="mainController">
+                <div>
                     <div class="photoCircle"><img class="photo" src="{{data.users[(currentUserId)].picUrl}}"/></div>
                     <h2 class="name">{{data.users[(currentUserId)].name}}</h2>
                     <ul>
@@ -10,13 +10,13 @@
                             <p>{{skill}}</p>
                         </li>
                     </ul>
+                    <md-input-container flex>
+                        <label>Skills</label>
+                        <input ng-model="skillToAdd" placeholder="write down anything you know how to do">
+                    </md-input-container>
+                    <button ng-click="addSkill(skillToAdd)">Add Skill</button><br/>
+                    <p>popup version .4</p>
                 </div>
-        <md-input-container flex>
-            <label>Skills</label>
-            <input ng-model="skillToAdd" placeholder="write down anything you know how to do">
-        </md-input-container>
-        <button ng-click="addSkill(skillToAdd)">Add Skill</button><br/>
-        <p>popup version .6</p>
     </md-content>
     <div class="md-actions" layout="row">
         <md-button href="" target="_blank">

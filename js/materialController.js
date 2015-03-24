@@ -1,6 +1,6 @@
 var app = angular.module('myConnects');
 
-app.controller('AppCtrl', function($scope, $timeout, $mdBottomSheet, $mdDialog) {
+app.controller('AppCtrl', function($scope,$rootScope, $timeout, $mdBottomSheet, $mdDialog) {
     //------buttons----------
     $scope.title1 = 'Button';
     $scope.title4 = 'Warn';
@@ -48,13 +48,8 @@ app.controller('AppCtrl', function($scope, $timeout, $mdBottomSheet, $mdDialog) 
                 templateUrl: "dialog1.html",
                 targetEvent: ev,
             })
-                .then(function(answer) {
-                    $scope.alert = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.alert = 'You cancelled the dialog.';
-                });
         };
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope,$rootScope, $mdDialog) {
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -64,6 +59,13 @@ app.controller('AppCtrl', function($scope, $timeout, $mdBottomSheet, $mdDialog) 
         $scope.answer = function(answer) {
             $mdDialog.hide(answer);
         };
+        $scope.data = $rootScope.data;
+        $scope.currentUserId = $rootScope.currentUserId;
+        $scope.addSkill = $rootScope.addSkill;
+
+//        console.log($rootScope.currentUserId);
+        console.log($scope.data);
+
     }
 });
 
