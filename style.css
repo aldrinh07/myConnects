@@ -1,0 +1,58 @@
+html body {
+    width: 100%;
+    height: 100%;
+    background-color: #F9F9F9;
+
+}
+
+.mainContainer {
+    height: 100%;
+    width: 100%;
+}
+.userImg {
+    width: 80px;
+    margin-left: -6px;
+    margin-top: -6px;
+}
+
+.userIcon {
+    margin-top: -16px;
+    margin-left: 40px;
+}
+
+md-toolbar {
+    z-index: 0;
+}
+.mainCardContent {
+    margin-bottom: -30px;
+}
+.cardContainer {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.userCard {
+    width: 280px;
+    height: 400px;
+    margin: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    /*display: flex;*/
+    /*align-items: center;*/
+}
+
+.photoCircle {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+/*.photo {*/
+    /*min-width: 80px;*/
+    /*min-height: 80px;*/
+/*}*/
