@@ -1,58 +1,188 @@
+/*@import url(http://fonts.googleapis.com/css?family=Raleway:100,200);*/
+
 html body {
     width: 100%;
     height: 100%;
-    background-color: #F9F9F9;
-
+    background-image: url(../image/bglightbulb.jpg);
+    background-size: cover;
+    font-family: "Raleway", "RobotoDraft";
 }
 
-.mainContainer {
-    height: 100%;
-    width: 100%;
-}
-.userImg {
-    width: 80px;
-    margin-left: -6px;
-    margin-top: -6px;
+.search {
+    margin-top: -18px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-.userIcon {
-    margin-top: -16px;
-    margin-left: 40px;
+.nav-items-left {
+    margin-top: -15px
 }
 
-md-toolbar {
-    z-index: 0;
-}
-.mainCardContent {
-    margin-bottom: -30px;
-}
-.cardContainer {
-    flex-direction: row;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+.userbtn {
 
-
-.userCard {
-    width: 280px;
-    height: 400px;
-    margin: 25px;
-    padding: 5px;
-    border-radius: 5px;
-    /*display: flex;*/
-    /*align-items: center;*/
-}
-
-.photoCircle {
-    max-width: 80px;
-    max-height: 80px;
+    margin-top: 4px;
+    width:44px;
+    height:44px;
     border-radius: 50%;
+    /*border: 2px solid red;*/
+    /*box-shadow: 0 3px 3px #000 inset;*/
+
+}
+.menu {
+    margin-right: 20px;
+}
+
+.menu-btns {
+    margin-left: 15px;
+}
+
+.tool-tip {
+    font-size: 17px;
+    font-family: RobotoDraft;
+}
+
+.logo {
+    font-family: RobotoDraft;
+}
+/*-----------------for main friends view-------------*/
+.cardsContainer {
+    width: 100%;
+    height: calc(100% - 90px);
+    overflow: auto;
+    position: fixed;
+
+}
+
+.friendCard {
+    height: 420px;
+    margin-bottom: 125px;
+    /*position: relative;*/
+    /*border: 1px solid #d9d9d9;*/
+    /*background-color: gainsboro;*/
+    /*border-radius: 5px;*/
+    /*background:rgba(255,255,255,.6);*/
+
+}
+
+.card-top {
+    /*outline: red solid 2px;*/
+    /*margin-top: -7px;*/
+    width: 100%;
+    height: 40%;
+    /*border: ghostwhite solid 1px;*/
+    /*border-radius: 5px;*/
+    /*background:rgba(255,255,255,.1);*/
+
+    /*overflow-x: scroll:*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    position: relative;
+}
+
+.card-bottom {
+    /*outline: blue solid 1px;*/
+    width: 100%;
+    height: 60%;
+    /*position: relative;*/
+    /*border: 1px solid #757575;*/
+    border-radius: 5px;
+    background:rgba(255,255,255,.9);
+    /*-moz-box-shadow:    inset 0 0 10px #080550;*/
+    /*-webkit-box-shadow: inset 0 0 10px #080550;*/
+    box-shadow:         inset 0 0 10px #252525;
+}
+
+
+.name {
+    /*outline: green 1px solid;*/
+    z-index: 100;
+    /*margin-top: -5px;*/
+    font-size: 150px;
+    font-family: Raleway;
+    position: absolute;
+    /*opacity: .5;*/
+    width: 100%;
+    font-weight: 200;
+    overflow-y: hidden;
+    white-space: nowrap;
+    color:rgba(255,255,255,.3);
+
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    /*margin-top: -220px;*/
     overflow: hidden;
+    margin-top:5px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /*position: relative;*/
+    position: absolute;
+    opacity: 1;
+    /*box-shadow:         inset 0 0 10px #080550;*/
+
+}
+
+
+.skillsContainer {
+    /*outline: orange solid 1px;*/
+    margin-top: -20px;
+    width: 100%;
+    height: 99%;
+    text-align: center;
+    overflow: scroll;
+    font-size: 20px;
+    opacity: 1;
+    /*overflow-style: marquee;*/
+    /*border: 1px solid red;*/
+}
+
+
+
+/*------------------for login view--------------------------*/
+/*.login-box {*/
+    /*height: 375px;*/
+    /*margin-bottom: 30px;*/
+    /*border-radius: 5px;*/
+    /*background-color: gainsboro;*/
+/*}*/
+.login-container {
+    height: calc(100% - 110px);
+
+
+}
+.login-box {
+    height: 20%;
     display: flex;
+    justify-content: center;
     align-items: center;
 }
-/*.photo {*/
-    /*min-width: 80px;*/
-    /*min-height: 80px;*/
+
+.text-container {
+    font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 70%;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: gainsboro;
+    opacity: .9;
+    overflow: auto;
+}
+
+
+/*-----------------------Modal---------------------*/
+
+.modal-body {
+    font-family: RobotoDraft;
+}
+
+/*.add-skills-input {*/
+    /*float: left;*/
+/*}*/
+
+/*.add-skills-button {*/
+    /*float: right;*/
 /*}*/

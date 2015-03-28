@@ -1,0 +1,29 @@
+<div class="search" role="search">
+    <input type="text" class="form-control" placeholder="Search by skills or name" ng-model="searchText">
+</div>
+
+
+<div class="container-fluid cardsContainer" ng-controller="AppCtrl">
+    <br/>
+    <div ng-repeat="friend in allFriends | filter:searchText" >
+        <div class="cardSpacer col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="friendCard">
+                <div class="card-top">
+                    <!--<h3 class="name">{{friend.name}}</h3>-->
+                    <div class="photo">
+                        <img class="photo" src="{{friend.picUrl}}"/>
+                    </div>
+                    <marquee class="name" behavior="scroll" direction="left" scrollamount="3">{{friend.name}}</marquee>
+                </div>
+                <div class="card-bottom">
+                    <br/>
+                    <div class="skillsContainer">
+                        <h3 ng-repeat="skill in friend.skills">
+                            <p>{{skill}}</p>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
