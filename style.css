@@ -3,9 +3,19 @@
 html body {
     width: 100%;
     height: 100%;
-    background-image: url(../image/bglightbulb.jpg);
+    /*background-image: url(../image/bglightbulb.jpg);*/
+    background: -webkit-linear-gradient(0deg, #16222A 10%, #4D68A1 90%); /* Chrome 10+, Saf5.1+ */
+    background:    -moz-linear-gradient(0deg, #16222A 10%, #4D68A1 90%); /* FF3.6+ */
+    background:     -ms-linear-gradient(0deg, #16222A 10%, #4D68A1 90%); /* IE10 */
+    background:      -o-linear-gradient(0deg, #16222A 10%, #4D68A1 90%); /* Opera 11.10+ */
+    background:         linear-gradient(0deg, #16222A 10%, #4D68A1 90%); /* W3C */
     background-size: cover;
     font-family: "Raleway", "RobotoDraft";
+    position: fixed;
+}
+
+.outline {
+    outline: 1px solid red;
 }
 
 .search {
@@ -19,12 +29,19 @@ html body {
 }
 
 .userbtn {
-
-    margin-top: 4px;
-    width:44px;
-    height:44px;
+    /*margin-top: 4px;*/
+    width:62px;
+    height:62px;
     border-radius: 50%;
-    /*border: 2px solid red;*/
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 2px;
+    /*margin-top: -8px;*/
+    margin-left: auto;
+    margin-right: auto;
+
+    /*border: 1px solid red;*/
     /*box-shadow: 0 3px 3px #000 inset;*/
 
 }
@@ -37,12 +54,14 @@ html body {
 }
 
 .tool-tip {
-    font-size: 17px;
+    font-size: 1rem;
     font-family: RobotoDraft;
 }
 
 .logo {
-    font-family: RobotoDraft;
+    margin-top: 10px;
+    height: 50px;
+    /*background-image: url(..//image/MyConnectsLogo.png);*/
 }
 /*-----------------for main friends view-------------*/
 .cardsContainer {
@@ -53,74 +72,129 @@ html body {
 
 }
 
+
 .friendCard {
-    height: 420px;
-    margin-bottom: 125px;
-    /*position: relative;*/
+    height: 450px;
+    margin-bottom: 50px;
+    position: relative;
     /*border: 1px solid #d9d9d9;*/
     /*background-color: gainsboro;*/
     /*border-radius: 5px;*/
     /*background:rgba(255,255,255,.6);*/
+    overflow: hidden;
 
 }
 
 .card-top {
-    /*outline: red solid 2px;*/
+    /*outline: red solid 3px;*/
     /*margin-top: -7px;*/
+    /*margin: */
     width: 100%;
-    height: 40%;
+    height: 90px;
     /*border: ghostwhite solid 1px;*/
     /*border-radius: 5px;*/
-    /*background:rgba(255,255,255,.1);*/
-
+    /*background:rgba(61,81,181,.2);*/
     /*overflow-x: scroll:*/
-    /*overflow: hidden;*/
     /*white-space: nowrap;*/
+    /*overflow: hidden;*/
     position: relative;
 }
 
 .card-bottom {
     /*outline: blue solid 1px;*/
     width: 100%;
-    height: 60%;
-    /*position: relative;*/
+    height: 360px;
+    font-family: RobotoDraft;
+    position: relative;
     /*border: 1px solid #757575;*/
-    border-radius: 5px;
-    background:rgba(255,255,255,.9);
+    /*border-radius: 5px;*/
+    /*border: white 2px solid;*/
+    /*background:rgba(255,255,255,1);*/
+
+    /*padding: 0px;*/
+    /*overflow: auto;*/
     /*-moz-box-shadow:    inset 0 0 10px #080550;*/
     /*-webkit-box-shadow: inset 0 0 10px #080550;*/
-    box-shadow:         inset 0 0 10px #252525;
+    /*box-shadow:         inset 0 0 10px #252525;*/
 }
 
-
-.name {
-    /*outline: green 1px solid;*/
-    z-index: 100;
-    /*margin-top: -5px;*/
-    font-size: 150px;
-    font-family: Raleway;
+.name-display{
     position: absolute;
-    /*opacity: .5;*/
+    /*z-index:500;*/
+    padding-left: 5px;
+    /*border: 1px solid red;*/
     width: 100%;
-    font-weight: 200;
-    overflow-y: hidden;
-    white-space: nowrap;
-    color:rgba(255,255,255,.3);
+    height: 28px;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 1.5rem;
+    /*margin-top: -105px;*/
+    top: 0;
+    background: rgba(0, 0, 0, 0.60);
 
+    /*margin-left: 0px;*/
+}
+
+.connects-count {
+    color: white;
+    /*left: 0;*/
+    right: 0;
+    padding-right: 5px;
+    /*margin-left: auto;*/
+    position: absolute;
+}
+
+/*.name-banner {*/
+    /*outline: green 2px solid;*/
+    /*z-index: 100;*/
+    /*margin-top: -75px;*/
+    /*vertical-align: middle;*/
+    /*font-size: 115px;*/
+    /*font-family: Raleway;*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*font-weight: 200;*/
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*color:rgba(255,255,255,.3);*/
+/*}*/
+.top-spacer {
+    height: 28px;
+    width: 100%;
+    /*position: relative;*/
+}
+
+.cover{
+    min-width: 100%;
+    min-height: 450px;
+    /*var width = 500px;*/
+    /*margin: 0 auto;*/
+    /*align-self: center;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*margin-left: calc(width);*/
+    /*margin-right: auto;*/
+    /*max-height: 445px;*/
+    /*position: absolute;*/
+    /*z-index: 0;*/
 }
 
 .photo {
-    width: 100px;
-    height: 100px;
+    z-index: 1000;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    /*margin-top: -220px;*/
-    overflow: hidden;
-    margin-top:5px;
+    border: #4D68A1 2px solid;
+    /*overflow: hidden;*/
+    /*margin-top:-55px;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
     left: 0;
     right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    /*position: relative;*/
+    top:6px;
+    /*margin-top: -65px;*/
+    margin-left: calc(50% - 40px);
+    /*display: inline-block;*/
     position: absolute;
     opacity: 1;
     /*box-shadow:         inset 0 0 10px #080550;*/
@@ -128,18 +202,83 @@ html body {
 }
 
 
-.skillsContainer {
-    /*outline: orange solid 1px;*/
-    margin-top: -20px;
+
+
+/*.friend-skills-tab {*/
+    /*position: absolute;*/
+/*}*/
+
+/*.friend-needs-tab {*/
+    /*position: absolute;*/
+/*}*/
+
+.title {
+    background: rgba(0, 0, 0, 0.60);
     width: 100%;
-    height: 99%;
+    height: 63px;
+    position: absolute;
+    z-index: 1000;
+    color: white;
+    /*font-size: 7rem;*/
+}
+
+.skills-title, .needs-title {
+    font-family: Raleway;
+    width: 50%;
+    height: 40px;
+    /*float: left;*/
     text-align: center;
-    overflow: scroll;
-    font-size: 20px;
-    opacity: 1;
+    font-size: 4rem;
+    padding: 0;
+    /*margin-bottom: -15px;*/
+}
+
+.skills-title {
+    /*outline: 1px red solid;*/
+    margin-left: -15px;
+    float: left;
+    color: #4287e7;
+}
+
+.needs-title {
+    /*outline: 1px blue solid;*/
+    float: right;
+    margin-right: -15px;
+    color: #4287e7;
+}
+
+
+.skillsContainer, .needsContainer {
+/*outline: orange solid 1px;*/
+/*margin-top: -20px;*/
+padding-top: 5px;
+width: 50%;
+height: 100%;
+float: left;
+overflow-y: scroll;
+overflow-x: hidden;
+/*display: flex;*/
+/*flex-flow: column;*/
+/*align-items: center;*/
+
+}
+.skillsContainer {
+    /*border-right: #757575 1px solid;*/
     /*overflow-style: marquee;*/
     /*border: 1px solid red;*/
+    /*position: relative;*/
 }
+
+.needsContainer {
+    border-left: #757575 1px solid;
+    float: right;
+    left:50%;
+    /*position: relative;*/
+}
+
+/*.skillsList, .needsList {*/
+
+/*}*/
 
 
 
@@ -151,9 +290,9 @@ html body {
     /*background-color: gainsboro;*/
 /*}*/
 .login-container {
-    height: calc(100% - 110px);
-
-
+    width: 100%;
+    height: 90%;
+    /*outline: 1px orange solid;*/
 }
 .login-box {
     height: 20%;
@@ -162,9 +301,10 @@ html body {
     align-items: center;
 }
 
-.text-container {
+.text-container, .update-log{
     font-family: "Roboto Condensed", "Helvetica Neue", Helvetica, Arial, sans-serif;
     height: 70%;
+    margin-top: 20px;
     margin-bottom: 30px;
     border-radius: 5px;
     background-color: gainsboro;
@@ -172,12 +312,25 @@ html body {
     overflow: auto;
 }
 
+.skills-needs {
+    width: 90%;
+    margin-bottom: 8px;
+    margin-left: 5%;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.70);
+    border: 2px solid black;
+    font-size: 2rem;
+
+}
 
 /*-----------------------Modal---------------------*/
 
 .modal-body {
+    /*outline: 1px solid red;*/
     font-family: RobotoDraft;
 }
+
 
 /*.add-skills-input {*/
     /*float: left;*/
@@ -186,3 +339,45 @@ html body {
 /*.add-skills-button {*/
     /*float: right;*/
 /*}*/
+
+/*//----------*/
+
+.grow {
+    transition: all .04s ease-in-out;
+}
+.grow:hover {
+    transform: scale(1.05);
+}
+
+.navbar-header {
+    height: 70px;
+}
+
+.navbar-toggle {
+    height: 55px;
+    width: 75px;
+}
+
+/*.icon-bar {*/
+    /*width: 100px;*/
+    /*height: 5px;*/
+/*}*/
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 50px;
+    height: 4px;
+    border-radius: 1px;
+}
+.form-control {
+    height: 50px;
+    font-size: 2rem;
+    color: white;
+    background-color: #4D68A1;
+}
+
+.action {
+    background: rgba(0, 0, 0, 0.60);
+    color: white;
+    font-size: 2rem;
+}

@@ -1,26 +1,70 @@
-<div class="search" role="search">
-    <input type="text" class="form-control" placeholder="Search by skills or name" ng-model="searchText">
-</div>
+<div class="cardsContainer">
+    <div class="container-fluid cardsContainer" ng-controller="AppCtrl">
+        <br/>
+        <!--<button ng-click="getCover()">get Cover</button>-->
+        <!--<div class="cardSpacer col-xs-12 col-sm-12 col-md-6 col-lg-4">-->
+            <!--<div class="friendCard md-whiteframe-z5"></div>-->
+        <!--</div>-->
 
 
-<div class="container-fluid cardsContainer" ng-controller="AppCtrl">
-    <br/>
-    <div ng-repeat="friend in allFriends | filter:searchText" >
-        <div class="cardSpacer col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="friendCard">
-                <div class="card-top">
-                    <!--<h3 class="name">{{friend.name}}</h3>-->
-                    <div class="photo">
-                        <img class="photo" src="{{friend.picUrl}}"/>
+        <div ng-repeat="friend in allFriends | filter:searchText" >
+            <div class="cardSpacer col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="friendCard md-whiteframe-z5">
+                    <!--<div class="titles col-md-12">-->
+
+                    <!--</div>-->
+                    <div class="card-top">
+                        <!--<h3 class="name">{{friend.name}}</h3>-->
+                        <div class="top-spacer">
+                            <img class="cover" src="{{friend.cover}}"/>
+                        </div>
+                            <p class="name-display">{{friend.name}}<span class="connects-count">{{friend.friendCount}} connects</span></p>
+                                <!--<p class="name-banner">{{friend.name}}</p>-->
+                        <div class="title">
+                            <div class="skills-title">SKILLS</div>
+                            <div class="needs-title">NEEDS</div>
+                        </div>
+                        <a href="{{friend.link}}" target="_blank">
+                            <img class="photo md-whiteframe-z1 grow" ng-click="window.open(friend.link)" src="{{friend.picUrl}}"/>
+                        </a>
                     </div>
-                    <marquee class="name" behavior="scroll" direction="left" scrollamount="3">{{friend.name}}</marquee>
-                </div>
-                <div class="card-bottom">
-                    <br/>
-                    <div class="skillsContainer">
-                        <h3 ng-repeat="skill in friend.skills">
-                            <p>{{skill}}</p>
-                        </h3>
+                    <div class="card-bottom">
+                        <div class="skillsContainer">
+                            <!--<div class="skillsList">-->
+                                <div ng-repeat="skill in friend.skills">
+                                    <!--<md-item-content class="skillsList">-->
+                                        <!--<div class="md-tile-left">-->
+                                            <!--<md-button class="md-warn" ng-click="removeNeed(need)">Remove</md-button>-->
+
+                                        <!--</div>-->
+                                        <div class="skillsList">
+                                            <div class="grow skills-needs" ng-click="skillClick(friend.name, friend.id, skill)">{{skill}}</div>
+                                            <!--<p>{{skill.notes}}</p>-->
+                                        </div>
+                                    <!--</md-item-content>-->
+                                    <!--<md-divider ng-if="!$last"></md-divider>-->
+                                </div>
+                            <!--</div>-->
+                            <!--<h3 ng-repeat="skill in friend.skills">-->
+                                <!--<p>{{skill}}</p>-->
+                            <!--</h3>-->
+                        </div>
+                        <div class="needsContainer">
+                            <div ng-repeat="need in friend.needs">
+                                <!--<md-item-content>-->
+                                    <!--<div class="md-tile-left">-->
+                                    <!--<md-button class="md-warn" ng-click="removeNeed(need)">Remove</md-button>-->
+
+                                    <!--</div>-->
+                                    <div class="needsList">
+                                        <div class="grow skills-needs">{{need}}</div>
+                                        <!--<p>{{skill.notes}}</p>-->
+                                    </div>
+                                <!--</md-item-content>-->
+                                <!--<md-divider ng-if="!$last"></md-divider>-->
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

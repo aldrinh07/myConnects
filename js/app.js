@@ -13,7 +13,7 @@ app.config(function($routeProvider){
             templateUrl: "/view/main.html"
         })
         .otherwise( {
-            redirectTo: '/login'
+            redirectTo: '/main'
         })
 
 });

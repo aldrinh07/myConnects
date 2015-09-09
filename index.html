@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
-    <!--<link href='http://fonts.googleapis.com/css?family=Raleway:200' rel='stylesheet' type='text/css'>-->
+    <!--<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Raleway:200,300,400,500'>-->
     <script type="text/javascript">
         WebFontConfig = {
             google: { families: [ 'Raleway:200:latin' ] }
@@ -31,13 +31,13 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <div class="nav-items-left navbar-brand">
-                <a class="logo" href="#/main">myConnects!</a>
+                <a href="#/main"> <img src="../image/MyConnectsLogo.png" class="logo"></a>
                 <!--<button type="button" class="btn btn-default navbar-btn">Sign in</button>-->
-                <a class="userbtn navbar-button" data-toggle="modal" data-target="#myModal" >
+                <a class="userbtn navbar-button grow" data-toggle="modal" data-target="#myModal" >
                 <img class="userbtn" src="{{data.users[(currentUserId)].picUrl}}"/>
 
-                <md-tooltip class="tool-tip" md-direction="right" md-visible="demo.showTooltip">
-                skills & needs
+                <md-tooltip class="tool-tip" md-direction="bottom" md-visible="demo.showTooltip">
+                Edit my Card
                 </md-tooltip>
                 <!--</img>-->
                 </a>
@@ -54,75 +54,67 @@
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
-                                <div class="user-skills-box col-md-6">
-                                    <md-toolbar class="md-theme-light">
-                                        <h2 class="md-toolbar-tools">
-                                            <span>skills</span>
-                                        </h2>
-                                    </md-toolbar>
-                                    <md-content class="md-whiteframe-z1">
-                                        <md-list>
-                                            <md-item ng-repeat="skill in data.users[(currentUserId)].skills">
-                                                <md-item-content>
-                                                    <div class="md-tile-left">
-                                                        <md-button class="md-warn" ng-click="removeSkill(skill)">Remove</md-button>
+                                <md-tabs md-selected=>
+                                    <md-tab id="skillsTab">
+                                        <md-tab-label class="skills-tab">skills</md-tab-label>
+                                        <md-tab-template class="outline">
+                                            <md-content>
+                                                <md-list>
+                                                    <md-item class="md-whiteframe-z1" ng-repeat="skill in data.users[(currentUserId)].skills">
+                                                        <md-item-content>
+                                                            <div class="md-tile-left">
+                                                                <md-button class="md-warn" ng-click="removeSkill(skill)">X</md-button>
+                                                            </div>
+                                                            <div class="md-tile-content">
+                                                                <h3>{{skill}}</h3>
+                                                                <p>{{skill.notes}}</p>
+                                                            </div>
+                                                        </md-item-content>
+                                                        <md-divider md-inset ng-if="!$last"></md-divider>
+                                                    </md-item>
+                                                </md-list>
+                                            </md-content>
+                                            <md-input-container class="add-skills-input">
+                                                <label>add skills/trade</label>
+                                                <input ng-model="data.skill" placeholder="sidelines, services, skills, anything you know how to do ">
+                                            </md-input-container>
+                                            <md-button type="button" class="add-skills md-raised md-primary" ng-click="addSkill(data.skill)">Add Skill</md-button>
+                                        </md-tab-template>
+                                    </md-tab>
+                                    <md-tab id="needsTab">
+                                        <md-tab-label class="needs-tab">needs</md-tab-label>
+                                        <md-tab-template>
+                                            <md-content>
+                                                <md-list>
+                                                    <md-item ng-repeat="need in data.users[(currentUserId)].needs">
+                                                        <md-item-content>
+                                                            <div class="md-tile-left">
+                                                                <md-button class="md-warn" ng-click="removeNeed(need)">X</md-button>
 
-                                                    </div>
-                                                    <div class="md-tile-content">
-                                                        <h3>     {{skill}}</h3>
-                                                        <p>
-                                                            {{skill.notes}}
-                                                        </p>
-                                                    </div>
-                                                </md-item-content>
-                                                <md-divider md-inset ng-if="!$last"></md-divider>
-                                            </md-item>
-                                        </md-list>
-                                    </md-content>
-                                    <md-input-container class="add-skills-input">
-                                        <label>add skills/trade</label>
-                                        <input ng-model="skillToAdd" placeholder="write down anything you know how to do">
-                                    </md-input-container>
-                                    <md-button type="button" class="add-skills md-raised md-primary" ng-click="addSkill(skillToAdd)">Add Skill</md-button>
-                                </div>
-                                <div class="user-needs-box col-md-6">
-                                    <md-toolbar class="md-theme-light">
-                                        <h2 class="md-toolbar-tools">
-                                            <span>needs</span>
-                                        </h2>
-                                    </md-toolbar>
-                                    <md-content class="md-whiteframe-z1">
-                                        <md-list>
-                                            <md-item ng-repeat="need in data.users[(currentUserId)].needs">
-                                                <md-item-content>
-                                                    <div class="md-tile-left">
-                                                        <md-button class="md-warn" ng-click="removeNeeds(need)">Remove</md-button>
-
-                                                    </div>
-                                                    <div class="md-tile-content">
-                                                        <h3>     {{need}}</h3>
-                                                        <p>
-                                                            {{need.notes}}
-                                                        </p>
-                                                    </div>
-                                                </md-item-content>
-                                                <md-divider md-inset ng-if="!$last"></md-divider>
-                                            </md-item>
-                                        </md-list>
-                                    </md-content>
-                                    <md-input-container class="add-needs-input">
-                                        <label>help needed</label>
-                                        <input ng-model="needToAdd" placeholder="any needs a friend can help with">
-                                    </md-input-container>
-                                    <md-button type="button" class="md-raised md-primary" ng-click="addNeed(needToAdd)">Add Needs</md-button>
-                                </div>
+                                                            </div>
+                                                            <div class="md-tile-content">
+                                                                <h3>{{need}}</h3>
+                                                                <p>{{need.notes}}</p>
+                                                            </div>
+                                                        </md-item-content>
+                                                        <md-divider md-inset ng-if="!$last"></md-divider>
+                                                    </md-item>
+                                                </md-list>
+                                            </md-content>
+                                            <md-input-container class="add-needs-input">
+                                                <label>help needed</label>
+                                                <input ng-model="data.needToAdd" placeholder="any needs a friend can help with">
+                                            </md-input-container>
+                                            <md-button type="button" class="md-warn md-raised md-hue-2" ng-click="addNeed(data.needToAdd)">Add Needs</md-button>
+                                        </md-tab-template>
+                                    </md-tab>
+                                </md-tabs>
                             </div>
                         </div>
 
                         <div class="modal-footer col">
-                            modal version .5
-                            <md-button type="button" class="circle-btn md-fab md-primary md-hue-2" ng-click="addSkill(skillToAdd)">Add Skill</md-button>
-                            <md-button type="button" class="circle-btn md-fab md-primary md-hue-2" data-dismiss="modal">Close</md-button>
+                            modal version 1.0
+                            <md-button type="button" class="circle-btn md-fab md-primary md-hue-2" ng-click="getFriends()" data-dismiss="modal">Close</md-button>
                         </div>
                     </div>
                 </div>
@@ -155,10 +147,10 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dev Support<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Suggest a feature</a></li>
-                        <li><a href="#">Report a bug</a></li>
+                        <li><a href="#/main">Suggest a feature</a></li>
+                        <li><a href="#/main">Report a bug</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Donate</a></li>
+                        <li><a href="#/main">Donate</a></li>
                     </ul>
                 </li>
                 <li><md-button class="navbar-btn menu-btns md-warn md-raised md-hue-2" ng-click="logOut()">Log Out</md-button></li>
@@ -166,29 +158,11 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<div class="search" role="search">
+    <input type="text" class="form-control" placeholder="Search by skills or name" ng-model="searchText">
+    <!--<input type="text" class="form-control" placeholder="Search by needs" ng-model="searchNeed">-->
+</div>
 <ng-view></ng-view>
-
-
-<!-----------testing grounds-------------->
-<!--<p>{{test}}</p>-->
-<!--<div ng-controller="AppCtrl">-->
-<!--<img src="{{data.users[(currentUserId)].picUrl}}" alt=""/>-->
-<!--<md-button class="md-fab md-primary md-hue-2" aria-label="Profile" ng-click="fbLogin()">Facebook</md-button>-->
-<!--<md-button class="md-fab md-primary md-hue-2" aria-label="Profile" ng-click="logoff()">logOff</md-button>-->
-
-<!--<md-button class="md-raised" ng-click="getFriends()">get friends</md-button>-->
-    <!--<md-input-container flex>-->
-        <!--<label>Skills</label>-->
-        <!--<input ng-model="skillToAdd" placeholder="write down anything you know how to do">-->
-    <!--</md-input-container>-->
-
-<!--<button ng-click="addSkill(skillToAdd)">Add Skill</button><br/>-->
-<!--<p>{{data.users[(currentUserId)].name}} skills:{{data.users[(currentUserId)].skills}}</p><br/>-->
-<!--</div>-->
-
-<!-----------testing grounds-------------->
-<!--<input ng-model="searchText">-->
-
 
 
 <!-- Angular Material Dependencies -->
